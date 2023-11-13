@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row">
+        <div class="title-allpage">
+            <h1 class="mt-4">All trash Page</h1>
+            <a href="/allpage/stored/all-page">
+                Back
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<form action="/page/handle-form-trash-actions" method="post">
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Sorting</th>
+            <th scope="col">Create At</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each pages}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.sorting}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+                <a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-course-modal"
+                    data-id="{{this._id}}">
+                    <i class="fa-solid fa-trash"></i> Remove
+                </a>
+                <a href="" class="btn btn-warning btn-restore" data-id="{{this._id}}"><i class="fa-solid fa-pen-to-square"></i>
+                    Restore</a>
+
+            </td>
+        </tr>
+        {{else}}
+        <p>Bạn chưa đăng page nào <a href="/page/add-page" class="">Đăng page</a></p>
+        {{/each}}
+    </tbody>
+</table>
+</form>
+
+{{!------- Form Delete Comfirm --------}}
+<div id="delete-course-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xóa Khóa học ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có thật sự muốn xóa khóa học này không ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-delete-course">Xóa</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-----delete form-----}}
+<form name="delete-course-form" method="POST"></form>
+{{!-----restore form-----}}
+<form name="restore-course-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var pageId;
+        var deleteForm = document.forms['delete-course-form'];
+        var containerFormBtn = document.forms['container-form'];
+        var restoreForm = document.forms['restore-course-form'];
+        var btnDeleteCourse = document.getElementById('btn-delete-course');
+        var checkboxAll = $('#checkbox-all');
+        var courseItemCheckbox = $("input[name='courseIds[]']");
+        var checkAllBtn = $(".btn-submit-checkall");
+        var restoreBtn = $('.btn-restore');
+
+
+        $('#delete-course-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            pageId = button.data('id');
+        })
+
+        btnDeleteCourse.addEventListener('click', function () {
+            deleteForm.action = '/page/' + pageId + '/force?_method=DELETE';
+            deleteForm.submit();
+        });
+
+        //btn restore 
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            var pageId = $(this).data('id');
+            restoreForm.action = '/page/' + pageId + '/restore?_method=PATCH';
+            restoreForm.submit();
+        });
+
+
+
+
+
+
+    });
+</script>

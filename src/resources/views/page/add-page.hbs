@@ -1,0 +1,22 @@
+<h2>Add a page</h2>
+<a href="/page" class="btn btn-primary">back to all page</a>
+<br><br>
+<form method="POST" action="/page/add-page-store" >
+    <div class="form-group">
+        <label for="">title</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+    </div>
+    <div class="form-group">
+        <label for="">content</label>
+        <textarea name="content" id="content" cols="30" rows="10"  placeholder="content" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">sorting</label>
+        <input type="text" class="form-control" name="sorting" id="sorting"  placeholder="sorting" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4" >Thêm Page</button>
+
+</form>
+
+

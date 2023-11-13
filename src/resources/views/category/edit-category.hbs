@@ -1,0 +1,12 @@
+<h2>Edit a category</h2>
+<a href="/allcategory/stored/all-category" class="btn btn-primary">back to all category</a>
+<br><br>
+<form method="POST" action="/category/{{category._id}}?_method=PUT" >
+    <div class="form-group">
+        <label for="">title</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{{category.title}}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4" >Save Page</button>
+
+</form>

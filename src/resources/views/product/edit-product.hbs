@@ -1,0 +1,30 @@
+<h2>Edit a page</h2>
+<a href="/allproduct/stored/all-product" class="btn btn-primary">back to all product</a>
+<br><br>
+<form method="POST" action="/product/{{product._id}}?_method=PUT" >
+    <div class="form-group">
+        <label for="">title</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{{product.title}}" required>
+    </div>
+    <div class="form-group">
+        <label for="">description</label>
+        <textarea name="desc" id="content" cols="30" rows="10"  placeholder="content" class="form-control"  required>{{product.desc}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="">category</label>
+        <input type="text" class="form-control" name="category" id="sorting"  placeholder="sorting" value="{{product.category}}" required>
+    </div>
+    <div class="form-group">
+        <label for="">price</label>
+        <input type="text" class="form-control" name="price" id="sorting"  placeholder="sorting" value="{{product.price}}" required>
+    {{!-- phan cho image --}}
+    {{!-- </div>
+        <div class="form-group">
+        <label for="">sorting</label>
+        <input type="text" class="form-control" name="sorting" id="sorting"  placeholder="sorting" value="{{product.sorting}}" required>
+    </div> --}}
+    <button type="submit" class="btn btn-primary mt-4" >Save Page</button>
+
+</form>
+
+

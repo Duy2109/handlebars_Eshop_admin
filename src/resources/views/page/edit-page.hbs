@@ -1,0 +1,22 @@
+<h2>Edit a page</h2>
+<a href="/allpage/stored/all-page" class="btn btn-primary">back to all page</a>
+<br><br>
+<form method="POST" action="/page/{{page._id}}?_method=PUT" >
+    <div class="form-group">
+        <label for="">title</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="{{page.title}}" required>
+    </div>
+    <div class="form-group">
+        <label for="">content</label>
+        <textarea name="content" id="content" cols="30" rows="10"  placeholder="content" class="form-control"  required>{{page.content}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="">sorting</label>
+        <input type="text" class="form-control" name="sorting" id="sorting"  placeholder="sorting" value="{{page.sorting}}" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-4" >Save Page</button>
+
+</form>
+
+
